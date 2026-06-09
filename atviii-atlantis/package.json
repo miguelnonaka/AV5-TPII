@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/ts/api/server.ts",
+    "build": "tsc",
+    "start": "node dist/api/server.js"
+  },
+  "dependencies": {
+    "@types/node": "^18.0.0",
+    "@types/prompt-sync": "^4.1.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mysql2": "^3.22.5",
+    "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^6.0.3"
+  }
+}
