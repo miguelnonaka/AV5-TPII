@@ -55,7 +55,7 @@ npm.cmd run prisma:migrate
 
 O seed cria:
 
-- 6 acomodacoes padrao da AV3
+- 6 acomodacoes padrao
 - titulares
 - dependentes
 - documentos
