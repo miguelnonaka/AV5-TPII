@@ -69,7 +69,7 @@ Rode:
 npm run seed
 ```
 
-Ou, no Windows:
+Ou
 
 ```bash
 npm.cmd run seed
@@ -113,7 +113,7 @@ Rode o frontend:
 npm run dev -- -p 3001
 ```
 
-Ou, no Windows:
+Ou:
 
 ```bash
 npm.cmd run dev -- -p 3001
