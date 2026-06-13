@@ -1,13 +1,87 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Cliente {
+  id              Int @id @default(autoincrement())
+
+  nome            String
+  nomeSocial      String
+
+  dataNascimento  DateTime
+  dataCadastro    DateTime @default(now())
+
+  depende         Boolean @default(false)
+
+  titularId       Int?
+  titular         Cliente? @relation("Dependencia", fields: [titularId], references: [id])
+
+  dependentes     Cliente[] @relation("Dependencia")
+
+  endereco        Endereco?
+
+  telefones       Telefone[]
+
+  documentos      Documento[]
+
+  acomodacaoId    Int?
+  acomodacao      Acomodacao? @relation(fields: [acomodacaoId], references: [id])
+}
+
+model Endereco {
+  id             Int @id @default(autoincrement())
+
+  rua            String
+  bairro         String
+  cidade         String
+  estado         String
+  pais           String
+  codigoPostal   String
+
+  clienteId      Int @unique
+  cliente        Cliente @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+}
+
+model Telefone {
+  id             Int @id @default(autoincrement())
+
+  ddd            String
+  numero         String
+
+  clienteId      Int
+  cliente        Cliente @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+}
+
+model Documento {
+  id             Int @id @default(autoincrement())
+
+  numero         String
+  tipo           String
+
+  dataExpedicao  DateTime
+
+  clienteId      Int
+  cliente        Cliente @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+}
+
+model Acomodacao {
+  id             Int @id @default(autoincrement())
+
+  nome           String
+
+  camaSolteiro   Int
+  camaCasal      Int
+
+  suite          Int
+
+  climatizacao   Boolean
+
+  garagem        Int
+
+  clientes       Cliente[]
 }

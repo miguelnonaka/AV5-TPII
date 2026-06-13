@@ -1,9 +1,13 @@
-import express from "express";
+import dotenv from "dotenv";
+import app from "./app";
 
-const app = express();
+dotenv.config();
 
-app.use(express.json());
+const PORT =
+    Number(process.env.PORT) || 3000;
 
-app.listen(3000, () => {
-    console.log("Servidor rodando");
+app.listen(PORT, () => {
+    console.log(
+        `Servidor rodando na porta ${PORT}`
+    );
 });
